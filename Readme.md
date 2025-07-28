@@ -1,3 +1,12 @@
 # dbops-project
 Исходный репозиторий для выполнения проекта дисциплины "DBOps"
 testworkflow
+
+CREATE USER autotest WITH PASSWORD 'password';
+GRANT CONNECT ON DATABASE store TO autotest;
+GRANT ALL PRIVILEGES ON ALL TABLES IN SCHEMA public TO autotest;
+ALTER DEFAULT PRIVILEGES IN SCHEMA public GRANT ALL PRIVILEGES ON TABLES TO autotest;
+GRANT ALL PRIVILEGES ON ALL SEQUENCES IN SCHEMA public TO autotest;
+ALTER DEFAULT PRIVILEGES IN SCHEMA public GRANT ALL PRIVILEGES ON SEQUENCES TO autotest;
+GRANT USAGE ON SCHEMA public TO autotest;
+GRANT CREATE ON SCHEMA public TO autotest;
