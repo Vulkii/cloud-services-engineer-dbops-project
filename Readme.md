@@ -1,8 +1,8 @@
-# dbops-project
-Исходный репозиторий для выполнения проекта дисциплины "DBOps"
+# Sukhikh Matvei DBOps Project
 
-Как создан пользователь и какие права ему выданы:
 
+## Как создан пользователь и какие права ему выданы:
+```
 CREATE USER autotest WITH PASSWORD 'password';
 
 GRANT CONNECT ON DATABASE store TO autotest;
@@ -19,16 +19,28 @@ GRANT USAGE ON SCHEMA public TO autotest;
 
 GRANT CREATE ON SCHEMA public TO autotest;
 
-
-
-
 sudo docker exec -it 93a6a597a482 psql -U user -d store -c "GRANT USAGE ON SCHEMA public TO autotest;"
 
 sudo docker exec -it 93a6a597a482 psql -U user -d store -c "GRANT CREATE ON SCHEMA public TO autotest;"
 
+```
+
+## Настройка секретов в GitHub Actions
+
+Для работы GitHub Actions нужно добавить в репозиторий секреты
+
+```properties
+DB_HOST: <IP_address>
+DB_PORT: 5432
+DB_NAME: store
+DB_USER: имя созданного пользователя
+DB_PASSWORD: пароль созданного пользователя
+```
 
 
-Запрос, который покажет, какое количество сосисок было продано за каждый день предыдущей недели.
+## Запрос, который покажет, какое количество сосисок было продано за каждый день предыдущей недели.
+```
+psql "host=localhost port=5432 dbname=store user=autotest"
 
 
 SELECT orders.date_created,
